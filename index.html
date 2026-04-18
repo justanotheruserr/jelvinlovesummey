@@ -123,7 +123,6 @@ button:hover {
   <clipPath id="heartClip">
     <path d="M50 88 C20 65,5 40,25 22 C38 10,50 22,50 22 C50 22,62 10,75 22 C95 40,80 65,50 88 Z"/>
   </clipPath>
-
   <linearGradient id="waveGradient" x1="0" y1="1" x2="0" y2="0">
     <stop offset="0%" stop-color="#ff2e63"/>
     <stop offset="100%" stop-color="#ff9bb3"/>
@@ -178,13 +177,13 @@ function getFuelLevel() {
   if (manualFuel !== null) return manualFuel;
 
   const now = new Date();
-  let day = now.getDay();
-  day = (day === 0) ? 6 : day - 1;
+  const day = now.getDay(); // 0=Sun, 1=Mon ... 6=Sat
 
-  let percent = 100 - (day * (100 / 7));
-  percent -= (now.getHours() / 24) * (100 / 7);
+  // Hours elapsed since Sunday 00:00
+  const hoursElapsed = day * 24 + now.getHours() + now.getMinutes() / 60;
+  const totalWeekHours = 7 * 24; // 168 hours
 
-  if (now.getDay() === 0 && percent <= 10) percent = 100;
+  const percent = 100 - (hoursElapsed / totalWeekHours) * 100;
 
   return Math.max(0, Math.min(100, percent));
 }

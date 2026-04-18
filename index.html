@@ -185,7 +185,7 @@ function getFuelLevel() {
 
   const percent = 100 - (hoursElapsed / totalWeekHours) * 100;
 
-  return Math.max(20, Math.min(100, percent));
+  return Math.max(0, Math.min(100, percent));
 }
 
 

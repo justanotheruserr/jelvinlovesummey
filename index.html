@@ -183,9 +183,10 @@ function getFuelLevel() {
   const hoursElapsed = day * 24 + now.getHours() + now.getMinutes() / 60;
   const totalWeekHours = 7 * 24; // 168 hours
 
-  const percent = 100 - (hoursElapsed / totalWeekHours) * 100;
+  // Drain from 100% down to 20% over the full week — never goes below 20%
+  const percent = 100 - (hoursElapsed / totalWeekHours) * 80;
 
-  return Math.max(0, Math.min(100, percent));
+  return Math.max(20, Math.min(100, percent));
 }
 
 

@@ -19,11 +19,16 @@ body {
   align-items: center;
   background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
   color: white;
-  border: 10px solid #ff4d6d;
+  border: 10px solid transparent;
   padding: 20px;
   gap: 20px;
   position: relative;
   overflow-x: hidden;
+  transition: border-color 0.6s ease;
+}
+
+body.revealed {
+  border-color: #ff4d6d;
 }
 
 /* Shooting stars canvas behind everything */
@@ -227,10 +232,110 @@ button:hover {
 .day { text-align: center; padding: 8px 0; border-radius: 50%; }
 .past { background-color: #28a745; }
 .today { background-color: #ff4d6d; font-weight: bold; }
+
+/* ── DEDICATION POPUP ── */
+#dedicationOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeInOverlay 0.6s ease forwards;
+}
+
+@keyframes fadeInOverlay {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+#dedicationBox {
+  background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+  border: 2px solid #ff4d6d;
+  border-radius: 20px;
+  padding: 40px 36px;
+  max-width: 380px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 0 60px rgba(255,77,109,0.35), 0 0 20px rgba(255,77,109,0.15);
+  animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1) 0.2s both;
+  position: relative;
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.7); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+#dedicationBox .popup-heart {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+  display: block;
+  animation: heartPop 1.2s ease-in-out infinite;
+}
+
+@keyframes heartPop {
+  0%,100% { transform: scale(1); }
+  50%      { transform: scale(1.15); }
+}
+
+#dedicationBox p {
+  font-size: 1.05rem;
+  color: #e0e0e0;
+  line-height: 1.7;
+  font-style: italic;
+  margin-bottom: 28px;
+  letter-spacing: 0.3px;
+}
+
+#dedicationBox p em {
+  color: #ff9bb3;
+  font-style: normal;
+  font-weight: bold;
+}
+
+#peekBtn {
+  padding: 12px 28px;
+  font-size: 1rem;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #ff4d6d, #ff2e63);
+  color: white;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 20px rgba(255,77,109,0.5);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+#peekBtn:hover {
+  transform: scale(1.07);
+  box-shadow: 0 6px 28px rgba(255,77,109,0.7);
+}
+
+#peekBtn:active { transform: scale(0.97); }
 </style>
 </head>
 
 <body>
+
+<!-- Dedication Popup -->
+<div id="dedicationOverlay">
+  <div id="dedicationBox">
+    <span class="popup-heart">❤️</span>
+    <p>"This page is dedicated to a love that <em>changed me</em>, and will stay with me... <em>always</em>"</p>
+    <button id="peekBtn" onclick="peekIntoLove()">Peek into my love 🌹</button>
+  </div>
+</div>
+
+<!-- Background song — replace src with your own audio file URL -->
+<audio id="loveSong" loop preload="auto">
+  <source src="MyOneAndOnly.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Main page content — hidden until button is clicked -->
+<div id="mainContent" style="visibility:hidden; opacity:0; transition: opacity 0.8s ease; width:100%; display:flex; flex-direction:column; align-items:center; gap:20px;">
 
 <!-- Shooting stars -->
 <canvas id="starsCanvas"></canvas>
@@ -281,7 +386,47 @@ button:hover {
   <div class="days" id="calendarDays"></div>
 </div>
 
+</div><!-- end #mainContent -->
+
 <script>
+// ── DEDICATION POPUP ───────────────────────────────────
+function peekIntoLove() {
+  const overlay = document.getElementById("dedicationOverlay");
+  const song    = document.getElementById("loveSong");
+  const main    = document.getElementById("mainContent");
+
+  overlay.style.transition = "opacity 0.6s ease";
+  overlay.style.opacity    = "0";
+  setTimeout(() => {
+    overlay.style.display = "none";
+    main.style.visibility = "visible";
+    requestAnimationFrame(() => { main.style.opacity = "1"; });
+    startPage();
+  }, 600);
+
+  song.volume = 0.7;
+  song.play().catch(() => {});
+  setTimeout(() => document.body.classList.add('revealed'), 400);
+}
+
+// ── HASH / REFUEL (global so button works) ────────────
+async function sha256(text) {
+  const data = new TextEncoder().encode(text);
+  const hash = await crypto.subtle.digest("SHA-256", data);
+  return Array.from(new Uint8Array(hash)).map(b=>b.toString(16).padStart(2,"0")).join("");
+}
+const correctHash = "88d4c34210eaf9e8bd973f8bca42faccdbb60907e2af64d37da46e3dd151b816";
+let manualFuel = null;
+async function refuel() {
+  const input = prompt("Enter the secret code ❤️"); if(!input) return;
+  const hash = await sha256(input);
+  if(hash===correctHash){ manualFuel=100; alert("Refueled with love ❤️"); }
+  else alert("Wrong code 💔");
+}
+
+// ── ALL ANIMATIONS — only start after button click ────
+function startPage() {
+
 // ── TIMER ──────────────────────────────────────────────
 const startDate = new Date("2024-02-24T00:00:00");
 function updateTimer() {
@@ -295,7 +440,6 @@ setInterval(updateTimer, 1000); updateTimer();
 
 
 // ── FUEL ───────────────────────────────────────────────
-let manualFuel = null;
 function getFuelLevel() {
   if (manualFuel !== null) return manualFuel;
   const now = new Date(), day = now.getDay();
@@ -645,21 +789,6 @@ textEl.classList.add("visible"); langEl.classList.add("visible");
 setInterval(showNext, 5000);
 
 
-// ── HASH / REFUEL ──────────────────────────────────────
-async function sha256(text) {
-  const data=new TextEncoder().encode(text);
-  const hash=await crypto.subtle.digest("SHA-256",data);
-  return Array.from(new Uint8Array(hash)).map(b=>b.toString(16).padStart(2,"0")).join("");
-}
-const correctHash="88d4c34210eaf9e8bd973f8bca42faccdbb60907e2af64d37da46e3dd151b816";
-async function refuel() {
-  const input=prompt("Enter the secret code ❤️"); if(!input)return;
-  const hash=await sha256(input);
-  if(hash===correctHash){manualFuel=100;alert("Refueled with love ❤️");}
-  else alert("Wrong code 💔");
-}
-
-
 // ── CALENDAR ───────────────────────────────────────────
 function generateCalendar() {
   const now=new Date(), year=now.getFullYear(), month=now.getMonth(), today=now.getDate();
@@ -679,6 +808,8 @@ function generateCalendar() {
   }
 }
 generateCalendar();
+
+} // end startPage()
 </script>
 
 </body>

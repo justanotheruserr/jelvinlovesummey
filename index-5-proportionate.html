@@ -1,0 +1,1602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>JxU ❤️</title>
+
+<!-- Primary Meta -->
+<meta name="description" content="A page dedicated to a love that changed me, and will stay with me... always.">
+<meta name="author" content="JxU">
+<meta name="theme-color" content="#ff4d6d">
+
+<!-- Open Graph (WhatsApp, Facebook, Discord previews) -->
+<meta property="og:title" content="JxU ❤️">
+<meta property="og:description" content="A page dedicated to a love that changed me, and will stay with me... always.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JxU ❤️">
+<meta name="twitter:description" content="A page dedicated to a love that changed me, and will stay with me... always.">
+
+<!-- Prevent indexing (this is a private love page) -->
+<meta name="robots" content="noindex, nofollow">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  height: 100dvh;
+  max-height: 100dvh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+  color: white;
+  border: 6px solid transparent;
+  box-sizing: border-box;
+  padding: 0;
+  position: relative;
+  transition: border-color 0.6s ease;
+}
+
+body.revealed {
+  border-color: #ff4d6d;
+}
+
+body.blurred {
+  filter: blur(8px);
+  transition: filter 1s ease;
+}
+
+/* Shooting stars canvas behind everything */
+#starsCanvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* All content above stars */
+body > *:not(#starsCanvas) {
+  position: relative;
+  z-index: 1;
+}
+
+h1 {
+  font-size: clamp(1.8rem, 7vw, 4.5rem);
+  letter-spacing: clamp(4px, 1.2vw, 12px);
+  color: #ff4d6d;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+h2 {
+  color: #ccc;
+  text-align: center;
+  font-size: clamp(0.7rem, 2.2vw, 1rem);
+  padding: 0 8px;
+}
+
+#timer {
+  font-size: clamp(0.75rem, 2.5vw, 1.2rem);
+  padding: clamp(6px, 1vh, 10px) clamp(12px, 2.5vw, 20px);
+  border: 1px solid #ff4d6d;
+  border-radius: 10px;
+  background: rgba(255,77,109,0.1);
+  text-align: center;
+  width: 100%;
+  max-width: 420px;
+}
+
+/* GLITCH BOX */
+.glitch-wrap {
+  position: relative;
+  width: min(320px, 90vw);
+  min-height: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+.glitch-lang {
+  font-size: 0.7rem;
+  color: #ff4d6d;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.glitch-text {
+  font-size: clamp(0.9rem, 3vw, 1.3rem);
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  position: relative;
+  opacity: 0;
+  letter-spacing: 1px;
+}
+
+.glitch-text.visible {
+  opacity: 1;
+  animation: glitchIn 0.4s steps(1) forwards;
+}
+
+.glitch-text.hiding {
+  animation: glitchOut 0.4s steps(1) forwards;
+}
+
+.glitch-lang.visible { opacity: 1; }
+
+@keyframes glitchIn {
+  0%   { opacity:0; clip-path: inset(40% 0 40% 0); transform: translateX(-4px) skewX(-5deg); color: #ff4d6d; }
+  10%  { opacity:1; clip-path: inset(0% 0 80% 0);  transform: translateX(4px) skewX(3deg); color: #fff; }
+  20%  { clip-path: inset(60% 0 10% 0); transform: translateX(-3px); color: #ff9bb3; }
+  30%  { clip-path: inset(10% 0 60% 0); transform: translateX(3px); color: #fff; }
+  40%  { clip-path: inset(80% 0 0% 0);  transform: translateX(-2px) skewX(2deg); }
+  50%  { clip-path: inset(0% 0 0% 0);   transform: translateX(0); color: #ff4d6d; }
+  60%  { clip-path: inset(20% 0 20% 0); transform: translateX(2px); color: #fff; }
+  70%  { clip-path: inset(0% 0 0% 0);   transform: translateX(-1px); }
+  85%  { clip-path: inset(5% 0 5% 0);   transform: translateX(1px); color: #ff9bb3; }
+  100% { opacity:1; clip-path: inset(0% 0 0% 0); transform: translateX(0) skewX(0); color: #fff; }
+}
+
+@keyframes glitchOut {
+  0%   { opacity:1; clip-path: inset(0% 0 0% 0); transform: translateX(0); color: #fff; }
+  15%  { clip-path: inset(20% 0 30% 0); transform: translateX(4px) skewX(3deg); color: #ff4d6d; }
+  30%  { clip-path: inset(50% 0 10% 0); transform: translateX(-4px); color: #ff9bb3; }
+  45%  { clip-path: inset(10% 0 60% 0); transform: translateX(3px) skewX(-4deg); color: #fff; }
+  60%  { clip-path: inset(70% 0 5% 0);  transform: translateX(-2px); color: #ff4d6d; }
+  75%  { clip-path: inset(0% 0 80% 0);  transform: translateX(2px) skewX(2deg); }
+  90%  { opacity:0.3; clip-path: inset(40% 0 40% 0); transform: translateX(-3px); }
+  100% { opacity:0; clip-path: inset(50% 0 50% 0); transform: translateX(0); }
+}
+
+.glitch-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: repeating-linear-gradient(
+    0deg, transparent, transparent 2px,
+    rgba(255,77,109,0.03) 2px, rgba(255,77,109,0.03) 4px
+  );
+  pointer-events: none;
+  border-radius: 8px;
+}
+
+.fuel-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(6px, 1.2vh, 12px);
+}
+
+.fuel-text {
+  font-size: clamp(0.65rem, 1.8vw, 0.85rem);
+  color: #aaa;
+  text-align: center;
+}
+
+button {
+  padding: clamp(6px, 1vh, 10px) clamp(12px, 2.5vw, 18px);
+  border: none;
+  border-radius: 10px;
+  background: #ff4d6d;
+  color: white;
+  cursor: pointer;
+  transition: 0.25s;
+  font-size: clamp(0.75rem, 1.8vw, 0.9rem);
+}
+
+button:hover {
+  background: #ff2e63;
+  transform: scale(1.05);
+}
+
+/* Heart + ECG */
+.heart-ecg-wrap {
+  position: relative;
+  width: min(260px, 80vw);
+  height: min(130px, 22vh);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heart-ecg-wrap svg.heart-svg {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  pointer-events: none;
+  transform-origin: center center;
+}
+
+#ecgCanvas {
+  position: absolute;
+  top: 0; left: 0;
+  z-index: 1;
+}
+
+/* Heartbeat pulse ring */
+.pulse-ring {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  width: 160px; height: 160px;
+  border-radius: 999px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+
+/* ── DEDICATION POPUP ── */
+#dedicationOverlay {
+  position: fixed;
+  top: -30px; left: -30px;
+  right: -30px; bottom: -30px;
+  background: rgba(10, 0, 8, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeInOverlay 0.6s ease forwards;
+}
+
+@keyframes fadeInOverlay {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+#dedicationBox {
+  background: rgba(255, 20, 80, 0.06);
+  border: 1.5px solid rgba(255, 77, 109, 0.6);
+  border-radius: 24px;
+  padding: 40px 36px;
+  max-width: 380px;
+  width: 90%;
+  text-align: center;
+  animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1) 0.2s both;
+  position: relative;
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.7); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+#dedicationBox .popup-heart {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+  display: block;
+  animation: heartPop 1.2s ease-in-out infinite;
+}
+
+@keyframes heartPop {
+  0%,100% { transform: scale(1); }
+  50%      { transform: scale(1.15); }
+}
+
+#dedicationBox p {
+  font-size: 1.05rem;
+  color: #e0e0e0;
+  line-height: 1.7;
+  font-style: italic;
+  margin-bottom: 28px;
+  letter-spacing: 0.3px;
+}
+
+#dedicationBox p em {
+  color: #ff9bb3;
+  font-style: normal;
+  font-weight: bold;
+}
+
+#peekBtn {
+  padding: 12px 28px;
+  font-size: 1rem;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #ff4d6d, #ff2e63);
+  color: white;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 20px rgba(255,77,109,0.5);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+#peekBtn:hover {
+  transform: scale(1.07);
+  box-shadow: 0 6px 28px rgba(255,77,109,0.7);
+}
+
+#peekBtn:active { transform: scale(0.97); }
+
+/* ── MILESTONE TIMELINE ── */
+
+.milestone-section {
+  width: 100%;
+  max-width: min(400px, 95vw);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding: clamp(6px, 1.5vh, 18px) 0 clamp(4px, 1vh, 12px);
+  overflow: visible;
+  flex-shrink: 0;
+}
+
+/* ── section header ── */
+.ms-header {
+  text-align: center;
+  margin-bottom: clamp(10px, 2.5vh, 28px);
+  opacity: 0;
+  transform: translateY(-12px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  z-index: 2;
+  position: relative;
+}
+.ms-header.animate { opacity: 1; transform: translateY(0); }
+
+.ms-header-eyebrow {
+  font-size: 0.6rem;
+  letter-spacing: 4px;
+  color: rgba(255,77,109,0.6);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.ms-header-title {
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-size: clamp(1rem, 3.5vw, 1.5rem);
+  font-style: italic;
+  color: #fff;
+  text-shadow: 0 0 30px rgba(255,77,109,0.5);
+  letter-spacing: 1px;
+}
+
+.ms-header-title span {
+  color: #ff4d6d;
+}
+
+/* ── canvas for petals ── */
+#milestoneCanvas {
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── center spine ── */
+.ms-spine {
+  position: absolute;
+  left: 50%;
+  top: 80px;
+  bottom: 60px;
+  width: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(to bottom,
+    rgba(255,77,109,0) 0%,
+    rgba(255,77,109,0.4) 15%,
+    rgba(255,77,109,0.4) 50%,
+    rgba(255,77,109,0.1) 85%,
+    rgba(80,80,80,0.3) 100%
+  );
+  z-index: 1;
+}
+
+/* animated glow bead travelling down the spine */
+.ms-bead {
+  position: absolute;
+  left: 50%;
+  top: 80px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ff4d6d;
+  transform: translateX(-50%);
+  box-shadow: 0 0 10px 4px rgba(255,77,109,0.7);
+  z-index: 3;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.ms-bead.visible { opacity: 1; }
+
+/* ── node wrapper ── */
+.ms-node {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  opacity: 0;
+  margin: clamp(6px, 1.2vh, 14px) 0;
+}
+
+.ms-node.left  { flex-direction: row-reverse; }
+.ms-node.right { flex-direction: row; }
+
+.ms-node.animate { opacity: 1; }
+
+/* ── dot cluster ── */
+.ms-dot-wrap {
+  width: 56px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 56px;
+}
+
+/* outer glow rings */
+.ms-ring1, .ms-ring2, .ms-ring3 {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(255,77,109,0.35);
+}
+.ms-ring1 { width: 56px; height: 56px; animation: msRing 2.4s ease-out infinite; }
+.ms-ring2 { width: 42px; height: 42px; animation: msRing 2.4s ease-out 0.5s infinite; }
+.ms-ring3 { width: 28px; height: 28px; animation: msRing 2.4s ease-out 1s infinite; }
+
+@keyframes msRing {
+  0%   { opacity: 0.8; transform: scale(0.7); }
+  100% { opacity: 0;   transform: scale(1.5); }
+}
+
+.ms-node.broke .ms-ring1,
+.ms-node.broke .ms-ring2,
+.ms-node.broke .ms-ring3 {
+  border-color: rgba(160,140,175,0.22);
+  animation: msRingDull 3.2s ease-out infinite;
+}
+.ms-node.broke .ms-ring2 { animation-delay: 0.8s; }
+.ms-node.broke .ms-ring3 { animation-delay: 1.6s; }
+
+@keyframes msRingDull {
+  0%   { opacity: 0.55; transform: scale(0.7); }
+  100% { opacity: 0;    transform: scale(1.5); }
+}
+
+.ms-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  z-index: 3;
+  position: relative;
+  background: radial-gradient(circle at 35% 35%, #ff9bb3, #ff2e63);
+  box-shadow:
+    0 0 0 3px rgba(255,77,109,0.25),
+    0 0 12px 4px rgba(255,77,109,0.55),
+    0 0 30px 8px rgba(255,77,109,0.2);
+  animation: msDotPulse 1.8s ease-in-out infinite;
+}
+
+.ms-node.broke .ms-dot {
+  background: radial-gradient(circle at 35% 35%, #b0a0c0, #5a4a6a);
+  box-shadow:
+    0 0 0 3px rgba(160,140,175,0.18),
+    0 0 10px 3px rgba(140,115,160,0.28),
+    0 0 26px 7px rgba(100,80,120,0.1);
+  animation: msDotPulseDull 2.6s ease-in-out infinite;
+}
+
+@keyframes msDotPulseDull {
+  0%,100% { transform: scale(1);    box-shadow: 0 0 0 3px rgba(160,140,175,0.18), 0 0 10px 3px rgba(140,115,160,0.28), 0 0 26px 7px rgba(100,80,120,0.10); }
+  50%      { transform: scale(1.09); box-shadow: 0 0 0 5px rgba(160,140,175,0.09), 0 0 16px 5px rgba(140,115,160,0.42), 0 0 36px 11px rgba(100,80,120,0.16); }
+}
+
+@keyframes msDotPulse {
+  0%,100% { transform: scale(1);    box-shadow: 0 0 0 3px rgba(255,77,109,0.25), 0 0 12px 4px rgba(255,77,109,0.55), 0 0 30px 8px rgba(255,77,109,0.2); }
+  50%      { transform: scale(1.15); box-shadow: 0 0 0 5px rgba(255,77,109,0.15), 0 0 20px 8px rgba(255,77,109,0.7), 0 0 40px 14px rgba(255,77,109,0.25); }
+}
+
+/* ── card ── */
+.ms-card {
+  flex: 1;
+  background: linear-gradient(135deg, rgba(255,77,109,0.06) 0%, rgba(255,20,80,0.03) 100%);
+  border: 1px solid rgba(255,77,109,0.2);
+  border-radius: 14px;
+  padding: clamp(8px, 1.5vh, 14px) clamp(10px, 2vw, 16px);
+  backdrop-filter: blur(8px);
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.ms-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(255,77,109,0.12), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.ms-card:hover::before { opacity: 1; }
+.ms-card:hover {
+  border-color: rgba(255,77,109,0.45);
+  box-shadow: 0 4px 32px rgba(255,77,109,0.15);
+}
+
+.ms-node.broke .ms-card {
+  background: linear-gradient(135deg, rgba(120,100,140,0.08) 0%, rgba(60,50,75,0.04) 100%);
+  border-color: rgba(140,120,160,0.22);
+}
+
+.ms-node.broke .ms-card:hover {
+  border-color: rgba(160,140,185,0.38);
+  box-shadow: 0 4px 24px rgba(100,80,120,0.15);
+}
+
+.ms-node.broke .ms-card::before {
+  background: linear-gradient(135deg, rgba(140,120,160,0.1), transparent 60%);
+}
+
+/* shimmer sweep */
+.ms-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -60%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.04), transparent);
+  animation: msShimmer 4s ease-in-out infinite;
+}
+.ms-node.broke .ms-card::after {
+  background: linear-gradient(90deg, transparent, rgba(180,160,200,0.04), transparent);
+  animation: msShimmerDull 7s ease-in-out infinite;
+}
+
+@keyframes msShimmer {
+  0%   { left: -60%; }
+  60%  { left: 120%; }
+  100% { left: 120%; }
+}
+
+@keyframes msShimmerDull {
+  0%   { left: -60%; }
+  75%  { left: 120%; }
+  100% { left: 120%; }
+}
+
+.ms-card-icon {
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  line-height: 1;
+  margin-bottom: clamp(3px, 0.6vh, 7px);
+  display: block;
+  animation: msIconFloat 3s ease-in-out infinite;
+}
+.ms-node.broke .ms-card-icon {
+  animation: msIconDrift 4.5s ease-in-out infinite;
+  opacity: 0.72;
+}
+
+@keyframes msIconDrift {
+  0%,100% { transform: translateY(0) rotate(1.5deg); }
+  50%      { transform: translateY(-3px) rotate(-1.5deg); }
+}
+
+@keyframes msIconFloat {
+  0%,100% { transform: translateY(0) rotate(-3deg); }
+  50%      { transform: translateY(-4px) rotate(3deg); }
+}
+
+.ms-card-label {
+  font-size: clamp(0.5rem, 1.4vw, 0.6rem);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #ff4d6d;
+  margin-bottom: clamp(2px, 0.4vh, 5px);
+  font-weight: 600;
+}
+.ms-node.broke .ms-card-label { color: #9a8aaa; }
+
+.ms-card-date {
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-size: clamp(0.85rem, 2.5vw, 1.05rem);
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.3px;
+  text-shadow: 0 0 20px rgba(255,77,109,0.3);
+}
+.ms-node.broke .ms-card-date { color: #c4b8d2; text-shadow: 0 0 14px rgba(140,115,160,0.2); }
+
+.ms-card-quote {
+  font-size: clamp(0.58rem, 1.5vw, 0.68rem);
+  font-style: italic;
+  color: #ff9bb3;
+  margin-top: clamp(3px, 0.5vh, 6px);
+  line-height: 1.4;
+  opacity: 0.85;
+}
+.ms-node.broke .ms-card-quote { color: #8a7a9e; }
+
+.ms-duration {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin: clamp(4px, 0.8vh, 8px) 0;
+  opacity: 0;
+  transform: scale(0.85) translateY(8px);
+  transition: opacity 0.9s cubic-bezier(0.34,1.56,0.64,1), transform 0.9s cubic-bezier(0.34,1.56,0.64,1);
+}
+.ms-duration.animate { opacity: 1; transform: scale(1) translateY(0); }
+
+.ms-duration-pill {
+  background: linear-gradient(135deg, rgba(255,77,109,0.12), rgba(255,20,80,0.08));
+  border: 1px solid rgba(255,77,109,0.35);
+  border-radius: 50px;
+  padding: clamp(5px, 0.9vh, 8px) clamp(12px, 3vw, 20px);
+  font-size: clamp(0.65rem, 1.8vw, 0.8rem);
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  color: #ffd4de;
+  letter-spacing: 0.5px;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(255,77,109,0.15), inset 0 1px 0 rgba(255,255,255,0.06);
+  animation: msPillGlow 3s ease-in-out infinite;
+}
+
+@keyframes msPillGlow {
+  0%,100% { box-shadow: 0 0 20px rgba(255,77,109,0.15), inset 0 1px 0 rgba(255,255,255,0.06); }
+  50%      { box-shadow: 0 0 35px rgba(255,77,109,0.3),  inset 0 1px 0 rgba(255,255,255,0.1); }
+}
+
+.ms-duration-hearts {
+  font-size: 0.9rem;
+  letter-spacing: 6px;
+  animation: msHeartsWave 1.5s ease-in-out infinite;
+}
+
+@keyframes msHeartsWave {
+  0%,100% { opacity: 0.5; letter-spacing: 6px; }
+  50%      { opacity: 1;   letter-spacing: 10px; }
+}
+
+/* ── MOBILE RESPONSIVE ── */
+@media (max-width: 480px) {
+  #dedicationBox {
+    padding: 28px 18px;
+    width: 88%;
+  }
+  #dedicationBox p { font-size: 0.9rem; }
+  #peekBtn { padding: 10px 20px; font-size: 0.9rem; }
+  .ms-dot-wrap { width: 44px; height: 44px; }
+  .ms-ring1 { width: 44px; height: 44px; }
+  .ms-ring2 { width: 33px; height: 33px; }
+  .ms-ring3 { width: 22px; height: 22px; }
+}
+
+/* Very short screens — hide less critical items progressively */
+@media (max-height: 680px) {
+  .ms-card-quote { display: none; }
+  .ms-duration-hearts { display: none; }
+}
+@media (max-height: 560px) {
+  h2 { display: none; }
+  .ms-header { display: none; }
+}
+@media (max-height: 480px) {
+  .glitch-wrap { display: none; }
+}
+
+/* ── PROPORTIONATE DESKTOP LAYOUT ── */
+#mainContent {
+  opacity: 0.4;
+  transition: opacity 1s ease;
+  width: 100%;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: clamp(14px, 2.2vh, 24px);
+  padding: clamp(18px, 3.5vw, 32px) clamp(16px, 4vw, 28px) clamp(28px, 5vh, 48px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+@media (min-width: 1024px) {
+  #mainContent {
+    justify-content: flex-start;
+    gap: clamp(20px, 2.8vh, 34px);
+    padding: clamp(32px, 5vh, 64px) clamp(42px, 6vw, 88px) clamp(56px, 8vh, 96px);
+  }
+
+  h1 {
+    font-size: clamp(3.1rem, 6vw, 5.4rem);
+    letter-spacing: clamp(6px, 1vw, 12px);
+  }
+
+  h2 {
+    font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+    max-width: 720px;
+  }
+
+  #timer {
+    max-width: 560px;
+    font-size: clamp(0.95rem, 1.4vw, 1.2rem);
+    padding: 12px 26px;
+  }
+
+  .glitch-wrap {
+    width: min(460px, 80vw);
+    min-height: 72px;
+    gap: 6px;
+  }
+
+  .glitch-lang {
+    font-size: 0.9rem;
+    letter-spacing: 3px;
+  }
+
+  .glitch-text {
+    font-size: clamp(1.25rem, 2vw, 1.7rem);
+  }
+
+  .heart-ecg-wrap {
+    width: min(340px, 40vw);
+    height: min(170px, 24vh);
+  }
+
+  .pulse-ring {
+    width: 190px;
+    height: 190px;
+  }
+
+  .fuel-text {
+    font-size: clamp(0.82rem, 1vw, 0.95rem);
+  }
+
+  .milestone-section {
+    width: min(100%, 1120px);
+    max-width: none;
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
+
+  #milestoneCanvas {
+    width: 100%;
+    max-width: 1120px;
+  }
+
+  .ms-header {
+    margin-bottom: 28px;
+  }
+
+  .ms-header-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 5px;
+  }
+
+  .ms-header-title {
+    font-size: clamp(1.4rem, 2.4vw, 2rem);
+  }
+
+  .ms-spine {
+    top: 92px;
+    bottom: 74px;
+  }
+
+  .ms-bead {
+    top: 92px;
+  }
+
+  .ms-node {
+    gap: 24px;
+    margin: 20px 0;
+  }
+
+  .ms-dot-wrap {
+    width: 72px;
+    height: 72px;
+  }
+
+  .ms-ring1 { width: 64px; height: 64px; }
+  .ms-ring2 { width: 48px; height: 48px; }
+  .ms-ring3 { width: 32px; height: 32px; }
+
+  .ms-dot {
+    width: 16px;
+    height: 16px;
+  }
+
+  .ms-card {
+    max-width: 420px;
+    padding: 18px 22px;
+  }
+
+  .ms-card-date {
+    font-size: clamp(1rem, 1.2vw, 1.15rem);
+  }
+
+  .ms-card-quote {
+    font-size: clamp(0.78rem, 0.95vw, 0.92rem);
+    line-height: 1.6;
+  }
+}
+
+@media (min-width: 1280px) {
+  #mainContent {
+    padding-left: clamp(56px, 7vw, 128px);
+    padding-right: clamp(56px, 7vw, 128px);
+  }
+
+  .milestone-section {
+    width: min(100%, 1260px);
+  }
+
+  #milestoneCanvas {
+    max-width: 1260px;
+  }
+
+  .ms-card {
+    max-width: 500px;
+    padding: 20px 26px;
+  }
+
+  .ms-node {
+    gap: 32px;
+    margin: 24px 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Dedication Popup -->
+<div id="dedicationOverlay">
+  <div id="dedicationBox">
+    <span class="popup-heart">❤️</span>
+    <p>"This page is dedicated to a love that <em>changed me</em>, and will stay with me... <em>always</em>"</p>
+    <button id="peekBtn" onclick="peekIntoLove()">Peek into my love 🌹</button>
+  </div>
+</div>
+
+<!-- Background song — replace src with your own audio file URL -->
+<audio id="loveSong" loop preload="auto">
+  <source src="MyOneAndOnly.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Main page content — hidden until button is clicked -->
+<div id="mainContent">
+
+<!-- Shooting stars -->
+<canvas id="starsCanvas"></canvas>
+
+<h1>JxU</h1>
+<h2>Every second with you is a moment I cherish forever ❤️</h2>
+
+<div id="timer"></div>
+
+<div class="glitch-wrap">
+  <div class="glitch-lang" id="glitchLang"></div>
+  <div class="glitch-text" id="glitchText"></div>
+</div>
+
+<div class="fuel-section">
+
+  <div class="heart-ecg-wrap">
+    <canvas id="ecgCanvas" width="260" height="130" style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;"></canvas>
+    <canvas id="pulseCanvas" width="260" height="130" style="position:absolute;top:0;left:0;z-index:3;pointer-events:none;width:100%;height:100%;"></canvas>
+
+    <svg class="heart-svg" id="heartSvg" viewBox="0 0 100 100" style="width:min(130px,40vw);height:min(130px,40vw);">
+      <defs>
+        <clipPath id="heartClip">
+          <path d="M50 85 C50 85,14 60,10 38 C6 20,20 8,32 8 C40 8,47 13,50 20 C53 13,60 8,68 8 C80 8,94 20,90 38 C86 60,50 85,50 85 Z"/>
+        </clipPath>
+        <linearGradient id="waveGradient" x1="0" y1="1" x2="0" y2="0">
+          <stop offset="0%" stop-color="#ff2e63"/>
+          <stop offset="100%" stop-color="#ff9bb3"/>
+        </linearGradient>
+      </defs>
+      <path d="M50 85 C50 85,14 60,10 38 C6 20,20 8,32 8 C40 8,47 13,50 20 C53 13,60 8,68 8 C80 8,94 20,90 38 C86 60,50 85,50 85 Z"
+        fill="#1a1a1a" stroke="#ff4d6d" stroke-width="2"/>
+      <g clip-path="url(#heartClip)">
+        <path id="wave" fill="url(#waveGradient)"></path>
+      </g>
+    </svg>
+  </div>
+
+  <div class="fuel-text">As long as this isn't empty, I'm thinking about you ❤️</div>
+  <button onclick="refuel()">Refuel ❤️</button>
+
+</div>
+
+
+<!-- ── MILESTONE TIMELINE ── -->
+<div class="milestone-section" id="milestoneSection">
+
+  <!-- Floating petals canvas -->
+  <canvas id="milestoneCanvas"></canvas>
+
+  <!-- Spine -->
+  <div class="ms-spine"></div>
+  <div class="ms-bead" id="msBead"></div>
+
+  <!-- Header -->
+  <div class="ms-header" id="msHeader">
+    <div class="ms-header-eyebrow">A Love Story</div>
+    <div class="ms-header-title">From <span>Good Morning Babe</span> to Good Morning</div>
+  </div>
+
+  <!-- Met node -->
+  <div class="ms-node met left" id="msNodeMet">
+    <div class="ms-dot-wrap">
+      <div class="ms-ring1"></div>
+      <div class="ms-ring2"></div>
+      <div class="ms-ring3"></div>
+      <div class="ms-dot"></div>
+    </div>
+    <div class="ms-card">
+      <span class="ms-card-icon">🌸</span>
+      <div class="ms-card-label">The Day We Met</div>
+      <div class="ms-card-date">24 February 2024</div>
+      <div class="ms-card-quote">"The moment the universe decided<br>our paths should cross"</div>
+    </div>
+  </div>
+
+  <!-- Duration -->
+  <div class="ms-duration" id="msDuration">
+    <div class="ms-duration-hearts" id="msDurationHearts">♥ ♥ ♥</div>
+    <div class="ms-duration-pill" id="msDurationPill"></div>
+  </div>
+
+  <!-- Broke up node -->
+  <div class="ms-node broke right" id="msNodeBroke">
+    <div class="ms-dot-wrap">
+      <div class="ms-ring1"></div>
+      <div class="ms-ring2"></div>
+      <div class="ms-ring3"></div>
+      <div class="ms-dot"></div>
+    </div>
+    <div class="ms-card">
+      <span class="ms-card-icon">🥀</span>
+      <div class="ms-card-label">The Day It Ended</div>
+      <div class="ms-card-date">30 April 2026</div>
+      <div class="ms-card-quote">"Not all stories end - some just<br>become a part of who you are"<br>You'll stay with me, always</div>
+    </div>
+  </div>
+
+</div>
+<div>
+    <div class="ms-header-title">From <span>Love you babe</span> to See you</div>
+  </div>
+</div><!-- end #mainContent -->
+
+<script>
+// ── DEDICATION POPUP ───────────────────────────────────
+
+// Move overlay to <html> so body blur doesn't affect it
+document.addEventListener('DOMContentLoaded', () => {
+  const overlay = document.getElementById('dedicationOverlay');
+  document.documentElement.appendChild(overlay);
+  document.body.classList.add('blurred');
+});
+
+function peekIntoLove() {
+  const overlay = document.getElementById("dedicationOverlay");
+  const song    = document.getElementById("loveSong");
+  const main    = document.getElementById("mainContent");
+
+  // Hide overlay instantly
+  overlay.style.display = "none";
+
+  // Remove blur from body, restore content
+  document.body.classList.remove('blurred');
+  main.style.opacity       = "1";
+  main.style.pointerEvents = "auto";
+
+  // Reveal border
+  setTimeout(() => document.body.classList.add('revealed'), 400);
+
+  // Play song
+  song.volume = 0.7;
+  song.play().catch(() => {});
+  setupBackgroundAudio(song);
+
+  startPage();
+}
+
+// ── BACKGROUND AUDIO (keep playing when screen locks) ──
+function setupBackgroundAudio(song) {
+  // Media Session API — registers the song with the OS so
+  // it shows on the lock screen and keeps playing
+  if ('mediaSession' in navigator) {
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: 'My One & Only',
+      artist: 'JxU ❤️',
+    });
+    navigator.mediaSession.setActionHandler('play',  () => song.play());
+    navigator.mediaSession.setActionHandler('pause', () => song.pause());
+  }
+
+  // Resume playback if the page becomes visible again after being hidden
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden && song.paused) {
+      song.play().catch(() => {});
+    }
+  });
+}
+
+
+async function sha256(text) {
+  const data = new TextEncoder().encode(text);
+  const hash = await crypto.subtle.digest("SHA-256", data);
+  return Array.from(new Uint8Array(hash)).map(b=>b.toString(16).padStart(2,"0")).join("");
+}
+const correctHash = "88d4c34210eaf9e8bd973f8bca42faccdbb60907e2af64d37da46e3dd151b816";
+let manualFuel = null;
+async function refuel() {
+  const input = prompt("Enter the secret code ❤️"); if(!input) return;
+  const hash = await sha256(input);
+  if(hash===correctHash){ manualFuel=100; alert("Refueled with love ❤️"); }
+  else alert("Wrong code 💔");
+}
+
+// ── ALL ANIMATIONS — only start after button click ────
+function startPage() {
+
+// ── TIMER ──────────────────────────────────────────────
+const startDate = new Date("2024-02-24T00:00:00");
+function updateTimer() {
+  const now = new Date(), diff = now - startDate;
+  const s = Math.floor(diff/1000)%60, m = Math.floor(diff/60000)%60,
+        h = Math.floor(diff/3600000)%24, d = Math.floor(diff/86400000);
+  document.getElementById("timer").innerText =
+    `${d} Days ${h} Hours ${m} Minutes ${s} Seconds`;
+}
+setInterval(updateTimer, 1000); updateTimer();
+
+
+// ── FUEL ───────────────────────────────────────────────
+function getFuelLevel() {
+  if (manualFuel !== null) return manualFuel;
+  const now = new Date(), day = now.getDay();
+  const hoursElapsed = day*24 + now.getHours() + now.getMinutes()/60;
+  return Math.max(20, Math.min(100, 100-(hoursElapsed/(7*24))*80));
+}
+
+
+// ── WAVE ───────────────────────────────────────────────
+let phase = 0;
+function updateWave() {
+  const height = 100 - getFuelLevel();
+  const wave = document.getElementById("wave");
+  let path = `M 0 ${height}`;
+  for (let x=0;x<=100;x++) path+=` L ${x} ${height+Math.sin((x+phase)*0.15)*2}`;
+  path += ` L 100 100 L 0 100 Z`;
+  wave.setAttribute("d", path);
+  phase += 2;
+}
+setInterval(updateWave, 50);
+
+
+// ── ECG ────────────────────────────────────────────────
+const ecgCanvas = document.getElementById("ecgCanvas");
+const ctx = ecgCanvas.getContext("2d");
+const W = ecgCanvas.width, H = ecgCanvas.height, midY = H/2, amp = 30;
+
+function ecgShape(c) {
+  c = c%1;
+  if (c<0.10) return 0;
+  if (c<0.20) return -Math.sin(((c-0.10)/0.10)*Math.PI)*0.15;
+  if (c<0.30) return 0;
+  if (c<0.34) return  Math.sin(((c-0.30)/0.04)*Math.PI)*0.10;
+  if (c<0.38) return -Math.sin(((c-0.34)/0.04)*Math.PI)*1.00;
+  if (c<0.43) return  Math.sin(((c-0.38)/0.05)*Math.PI)*0.30;
+  if (c<0.55) return 0;
+  if (c<0.75) return -Math.sin(((c-0.55)/0.20)*Math.PI)*0.25;
+  return 0;
+}
+
+const buf = new Array(W).fill(midY);
+let writePos=0, ecgT=0;
+const ecgSpeed = 0.007;
+// Track when the R spike fires to trigger heartbeat pulse
+let lastSpike = false;
+
+function drawECG() {
+  ecgT += ecgSpeed;
+  const val = ecgShape(ecgT);
+  buf[writePos%W] = midY + val*amp;
+
+  // Detect R-spike crossing threshold — fire pulse
+  const isSpike = val < -0.7;
+  if (isSpike && !lastSpike) triggerPulse();
+  lastSpike = isSpike;
+
+  writePos++;
+  ctx.clearRect(0,0,W,H);
+  ctx.lineWidth=1.8; ctx.lineCap="round"; ctx.lineJoin="round";
+  for (let i=1;i<W;i++) {
+    const idx=(writePos+i)%W, prev=(writePos+i-1)%W;
+    ctx.globalAlpha = i<40 ? (i/40)*0.85 : 0.85;
+    ctx.strokeStyle="#ff4d6d";
+    ctx.beginPath(); ctx.moveTo(i-1,buf[prev]); ctx.lineTo(i,buf[idx]); ctx.stroke();
+  }
+  ctx.globalAlpha=1;
+  const dotY=buf[(writePos-1+W)%W];
+  ctx.beginPath(); ctx.arc(W-1,dotY,3,0,Math.PI*2);
+  ctx.fillStyle="#ff9bb3"; ctx.shadowColor="#ff4d6d"; ctx.shadowBlur=10;
+  ctx.fill(); ctx.shadowBlur=0;
+  requestAnimationFrame(drawECG);
+}
+drawECG();
+
+
+// ── HEARTBEAT PULSE RINGS ──────────────────────────────
+const pulseCanvas = document.getElementById("pulseCanvas");
+const pCtx = pulseCanvas.getContext("2d");
+const PW = pulseCanvas.width, PH = pulseCanvas.height;
+const cx = PW/2, cy = PH/2;
+
+const pulses = [];
+
+function triggerPulse() {
+  pulses.push({ r: 70, alpha: 0.7, born: performance.now() });
+  // Also scale the heart SVG
+  heartBeat();
+}
+
+function heartBeat() {
+  const svg = document.getElementById("heartSvg");
+  svg.style.transition = "transform 0.1s ease-out";
+  svg.style.transform = "translate(-50%,-50%) scale(1.12)";
+  setTimeout(()=>{
+    svg.style.transition = "transform 0.25s ease-in-out";
+    svg.style.transform = "translate(-50%,-50%) scale(1.0)";
+  }, 110);
+}
+
+function drawPulses() {
+  pCtx.clearRect(0,0,PW,PH);
+  const now = performance.now();
+  for (let i = pulses.length-1; i>=0; i--) {
+    const p = pulses[i];
+    const age = (now - p.born)/1000; // seconds
+    p.r += 1.8;
+    p.alpha = Math.max(0, 0.7 - age*1.1);
+    if (p.alpha <= 0) { pulses.splice(i,1); continue; }
+    pCtx.beginPath();
+    // Draw heart-shaped ring by scaling a path — approximate with circle for ring
+    pCtx.arc(cx, cy, p.r, 0, Math.PI*2);
+    pCtx.strokeStyle = `rgba(255,77,109,${p.alpha})`;
+    pCtx.lineWidth = 2;
+    pCtx.stroke();
+  }
+  requestAnimationFrame(drawPulses);
+}
+drawPulses();
+
+
+// ── SHOOTING STARS ─────────────────────────────────────
+const starsCanvas = document.getElementById("starsCanvas");
+const sCtx = starsCanvas.getContext("2d");
+
+function resizeStars() {
+  starsCanvas.width  = window.innerWidth;
+  starsCanvas.height = window.innerHeight;
+}
+resizeStars();
+window.addEventListener("resize", resizeStars);
+
+// Static twinkling stars
+const staticStars = Array.from({length: 120}, () => ({
+  x: Math.random(),
+  y: Math.random(),
+  r: Math.random()*1.2+0.3,
+  phase: Math.random()*Math.PI*2,
+  speed: Math.random()*0.02+0.005
+}));
+
+// Shooting stars pool
+const shooters = [];
+
+function spawnShooter() {
+  const angle = (Math.random()*30 + 20) * Math.PI/180; // 20–50° downward
+  const len   = Math.random()*120+60;
+  shooters.push({
+    x: Math.random()*starsCanvas.width,
+    y: Math.random()*(starsCanvas.height*0.5),
+    vx: Math.cos(angle)*8,
+    vy: Math.sin(angle)*8,
+    len,
+    alpha: 1,
+    tail: []
+  });
+}
+
+// Spawn a shooter every 2–5 seconds
+function scheduleShooter() {
+  spawnShooter();
+  setTimeout(scheduleShooter, Math.random()*3000+2000);
+}
+scheduleShooter();
+
+let frameT = 0;
+function drawStars(ts) {
+  const SW = starsCanvas.width, SH = starsCanvas.height;
+  sCtx.clearRect(0,0,SW,SH);
+
+  // Twinkling dots
+  staticStars.forEach(s => {
+    s.phase += s.speed;
+    const a = 0.3+0.5*(Math.sin(s.phase)*0.5+0.5);
+    sCtx.beginPath();
+    sCtx.arc(s.x*SW, s.y*SH, s.r, 0, Math.PI*2);
+    sCtx.fillStyle = `rgba(255,200,210,${a})`;
+    sCtx.fill();
+  });
+
+  // Shooting stars
+  for (let i=shooters.length-1; i>=0; i--) {
+    const s = shooters[i];
+    s.tail.push({x:s.x, y:s.y});
+    if (s.tail.length > 18) s.tail.shift();
+    s.x += s.vx; s.y += s.vy;
+    s.alpha -= 0.012;
+
+    if (s.alpha<=0 || s.x>SW+50 || s.y>SH+50) { shooters.splice(i,1); continue; }
+
+    // Draw tail gradient
+    if (s.tail.length > 1) {
+      const grad = sCtx.createLinearGradient(
+        s.tail[0].x, s.tail[0].y, s.x, s.y
+      );
+      grad.addColorStop(0, `rgba(255,77,109,0)`);
+      grad.addColorStop(0.5, `rgba(255,150,170,${s.alpha*0.4})`);
+      grad.addColorStop(1, `rgba(255,255,255,${s.alpha})`);
+      sCtx.beginPath();
+      sCtx.moveTo(s.tail[0].x, s.tail[0].y);
+      for (const p of s.tail) sCtx.lineTo(p.x, p.y);
+      sCtx.lineTo(s.x, s.y);
+      sCtx.strokeStyle = grad;
+      sCtx.lineWidth = 1.5;
+      sCtx.stroke();
+    }
+
+    // Head dot
+    sCtx.beginPath();
+    sCtx.arc(s.x, s.y, 2, 0, Math.PI*2);
+    sCtx.fillStyle = `rgba(255,255,255,${s.alpha})`;
+    sCtx.fill();
+  }
+
+  requestAnimationFrame(drawStars);
+}
+requestAnimationFrame(drawStars);
+
+
+// ── GLITCH LOVE MESSAGES ───────────────────────────────
+const declarations = [
+  { lang: "English",       text: "I love you, Ummey" },
+  { lang: "Malayalam",     text: "ഞാൻ നിന്നെ സ്നേഹിക്കുന്നു, Ummey" },
+  { lang: "Arabic",        text: "أحبكِ يا Ummey" },
+  { lang: "French",        text: "Je t'aime, Ummey" },
+  { lang: "Spanish",       text: "Te amo, Ummey" },
+  { lang: "Portuguese",    text: "Eu te amo, Ummey" },
+  { lang: "Italian",       text: "Ti amo, Ummey" },
+  { lang: "German",        text: "Ich liebe dich, Ummey" },
+  { lang: "Japanese",      text: "愛してるよ、Ummey" },
+  { lang: "Korean",        text: "사랑해, Ummey" },
+  { lang: "Mandarin",      text: "我爱你，Ummey" },
+  { lang: "Hindi",         text: "मैं तुमसे प्यार करता हूँ, Ummey" },
+  { lang: "Bengali",       text: "আমি তোমাকে ভালোবাসি, Ummey" },
+  { lang: "Urdu",          text: "میں تم سے محبت کرتا ہوں، Ummey" },
+  { lang: "Turkish",       text: "Seni seviyorum, Ummey" },
+  { lang: "Persian",       text: "دوستت دارم، Ummey" },
+  { lang: "Russian",       text: "Я люблю тебя, Ummey" },
+  { lang: "Greek",         text: "Σ' αγαπώ, Ummey" },
+  { lang: "Hebrew",        text: "אני אוהב אותך, Ummey" },
+  { lang: "Swahili",       text: "Nakupenda, Ummey" },
+  { lang: "Dutch",         text: "Ik hou van jou, Ummey" },
+  { lang: "Swedish",       text: "Jag älskar dig, Ummey" },
+  { lang: "Norwegian",     text: "Jeg elsker deg, Ummey" },
+  { lang: "Danish",        text: "Jeg elsker dig, Ummey" },
+  { lang: "Finnish",       text: "Rakastan sinua, Ummey" },
+  { lang: "Polish",        text: "Kocham cię, Ummey" },
+  { lang: "Czech",         text: "Miluji tě, Ummey" },
+  { lang: "Romanian",      text: "Te iubesc, Ummey" },
+  { lang: "Hungarian",     text: "Szeretlek, Ummey" },
+  { lang: "Ukrainian",     text: "Я тебе кохаю, Ummey" },
+  { lang: "Thai",          text: "ฉันรักคุณ, Ummey" },
+  { lang: "Vietnamese",    text: "Anh yêu em, Ummey" },
+  { lang: "Indonesian",    text: "Aku cintamu, Ummey" },
+  { lang: "Malay",         text: "Aku cinta kamu, Ummey" },
+  { lang: "Tagalog",       text: "Mahal kita, Ummey" },
+  { lang: "Amharic",       text: "እወድሻለሁ፣ Ummey" },
+  { lang: "Yoruba",        text: "Mo nífẹ̀ẹ́ rẹ, Ummey" },
+  { lang: "Zulu",          text: "Ngiyakuthanda, Ummey" },
+  { lang: "Hausa",         text: "Ina son ki, Ummey" },
+  { lang: "Tamil",         text: "நான் உன்னை நேசிக்கிறேன், Ummey" },
+  { lang: "Telugu",        text: "నేను నిన్ను ప్రేమిస్తున్నాను, Ummey" },
+  { lang: "Kannada",       text: "ನಾನು ನಿನ್ನನ್ನು ಪ್ರೀತಿಸುತ್ತೇನೆ, Ummey" },
+  { lang: "Gujarati",      text: "હું તને પ્રેમ કરું છું, Ummey" },
+  { lang: "Punjabi",       text: "ਮੈਂ ਤੁਹਾਨੂੰ ਪਿਆਰ ਕਰਦਾ ਹਾਂ, Ummey" },
+  { lang: "Marathi",       text: "मी तुझ्यावर प्रेम करतो, Ummey" },
+  { lang: "Nepali",        text: "म तिमीलाई माया गर्छु, Ummey" },
+  { lang: "Sinhala",       text: "මම ඔයාට ආදරෙයි, Ummey" },
+  { lang: "Burmese",       text: "ကျွန်တော် မင်းကို ချစ်တယ်, Ummey" },
+  { lang: "Khmer",         text: "ខ្ញុំស្រលាញ់អ្នក, Ummey" },
+  { lang: "Mongolian",     text: "Би чамд хайртай, Ummey" },
+  { lang: "Kazakh",        text: "Мен сені жақсы көремін, Ummey" },
+  { lang: "Georgian",      text: "მე შენ მიყვარხარ, Ummey" },
+  { lang: "Armenian",      text: "Ես քեզ սիրում եմ, Ummey" },
+  { lang: "Albanian",      text: "Të dua, Ummey" },
+  { lang: "Serbian",       text: "Волим те, Ummey" },
+  { lang: "Croatian",      text: "Volim te, Ummey" },
+  { lang: "Bulgarian",     text: "Обичам те, Ummey" },
+  { lang: "Lithuanian",    text: "Aš tave myliu, Ummey" },
+  { lang: "Latvian",       text: "Es tevi mīlu, Ummey" },
+  { lang: "Estonian",      text: "Ma armastan sind, Ummey" },
+  { lang: "Icelandic",     text: "Ég elska þig, Ummey" },
+  { lang: "Irish",         text: "Tá grá agam duit, Ummey" },
+  { lang: "Welsh",         text: "Rwy'n dy garu di, Ummey" },
+  { lang: "Catalan",       text: "T'estimo, Ummey" },
+  { lang: "Basque",        text: "Maite zaitut, Ummey" },
+  { lang: "Afrikaans",     text: "Ek is lief vir jou, Ummey" },
+  { lang: "Esperanto",     text: "Mi amas vin, Ummey" },
+  { lang: "Latin",         text: "Te amo, Ummey" },
+  { lang: "Somali",        text: "Waan ku jeclahay, Ummey" },
+  { lang: "Swati",         text: "Ngiyakutsandza, Ummey" },
+  { lang: "Chichewa",      text: "Ndimakukonda, Ummey" },
+  { lang: "Luganda",       text: "Nkwagala, Ummey" },
+  { lang: "Hawaiian",      text: "Aloha wau iā ʻoe, Ummey" },
+  { lang: "Māori",         text: "Aroha ana ahau ki a koe, Ummey" },
+  { lang: "Samoan",        text: "Ou te alofa ia te oe, Ummey" },
+  { lang: "Tagalog",       text: "Mahal kita, Ummey" },
+  { lang: "Javanese",      text: "Aku tresna kowe, Ummey" },
+  { lang: "Nahuatl",       text: "Nimitztlazohtla, Ummey" },
+  { lang: "Quechua",       text: "Qanta munani, Ummey" },
+  { lang: "Guaraní",       text: "Rohayhu, Ummey" },
+  { lang: "Ewe",           text: "Me lɔ wo, Ummey" },
+  { lang: "Yoruba",        text: "Mo nífẹ̀ẹ́ rẹ, Ummey" },
+  { lang: "Kinyarwanda",   text: "Ndagukunda, Ummey" },
+  { lang: "Lingala",       text: "Nalingi yo, Ummey" },
+  { lang: "Odia",          text: "ମୁଁ ତୁମକୁ ଭଲ ପାଏ, Ummey" },
+  { lang: "Assamese",      text: "মই তোমাক ভাল পাওঁ, Ummey" },
+  { lang: "Tigrinya",      text: "ኣፍቅረኪ, Ummey" },
+  { lang: "Oromo",         text: "Si jaalladha, Ummey" },
+  { lang: "Tswana",        text: "Ke a go rata, Ummey" },
+  { lang: "Zulu",          text: "Ngiyakuthanda, Ummey" },
+  { lang: "Macedonian",    text: "Те сакам, Ummey" },
+  { lang: "Belarusian",    text: "Я цябе кахаю, Ummey" },
+  { lang: "Maltese",       text: "Inħobbok, Ummey" },
+  { lang: "Faroese",       text: "Eg elski teg, Ummey" },
+  { lang: "Occitan",       text: "T'aimi, Ummey" },
+  { lang: "Kabyle",        text: "Hamlaɣ-kem, Ummey" },
+  { lang: "Uzbek",         text: "Men seni yaxshi ko'raman, Ummey" },
+  { lang: "Kyrgyz",        text: "Мен сени сүйөм, Ummey" },
+  { lang: "Tajik",         text: "Ман туро дӯст медорам, Ummey" },
+  { lang: "Turkmen",       text: "Men seni söýýärin, Ummey" },
+];
+
+for (let i=declarations.length-1;i>0;i--) {
+  const j=Math.floor(Math.random()*(i+1));
+  [declarations[i],declarations[j]]=[declarations[j],declarations[i]];
+}
+
+let currentIdx=0;
+const textEl=document.getElementById("glitchText");
+const langEl=document.getElementById("glitchLang");
+
+function showNext() {
+  textEl.classList.remove("visible"); textEl.classList.add("hiding");
+  langEl.classList.remove("visible");
+  setTimeout(()=>{
+    textEl.classList.remove("hiding");
+    const e=declarations[currentIdx%declarations.length]; currentIdx++;
+    textEl.textContent=e.text; langEl.textContent=e.lang;
+    void textEl.offsetWidth;
+    textEl.classList.add("visible"); langEl.classList.add("visible");
+  }, 400);
+}
+
+const f=declarations[currentIdx%declarations.length]; currentIdx++;
+textEl.textContent=f.text; langEl.textContent=f.lang;
+textEl.classList.add("visible"); langEl.classList.add("visible");
+setInterval(showNext, 5000);
+
+
+
+
+// ── MILESTONE TIMELINE ─────────────────────────────────
+(function() {
+  // ── Duration calc ──
+  const metDate   = new Date("2024-02-24T00:00:00");
+  const brokeDate = new Date("2026-04-30T00:00:00");
+  const diffMs    = brokeDate - metDate;
+  const diffDays  = Math.floor(diffMs / 86400000);
+  const yrs       = Math.floor(diffDays / 365);
+  const remAfterYrs = diffDays - yrs * 365;
+  const mos       = Math.floor(remAfterYrs / 30);
+  const remDays   = remAfterYrs - mos * 30;
+
+  let parts = [];
+  if (yrs > 0)  parts.push(`${yrs} year${yrs>1?"s":""}`);
+  if (mos > 0)  parts.push(`${mos} month${mos>1?"s":""}`);
+  if (remDays > 0) parts.push(`${remDays} day${remDays>1?"s":""}`);
+  document.getElementById("msDurationPill").textContent =
+    `✦  ${parts.join("  ·  ")}  of  love  ✦`;
+
+  // ── Petal canvas ──
+  const mc  = document.getElementById("milestoneCanvas");
+  const mctx = mc.getContext("2d");
+
+  function resizeMC() {
+    const sec = document.getElementById("milestoneSection");
+    mc.width  = sec.offsetWidth  || 400;
+    mc.height = sec.offsetHeight || 500;
+  }
+  resizeMC();
+  window.addEventListener("resize", resizeMC);
+
+  // Petal shapes: tiny hearts & sakura petals
+  const petals = Array.from({length: 22}, (_, i) => ({
+    x: Math.random() * 400,
+    y: Math.random() * 600 - 100,
+    size: Math.random() * 8 + 5,
+    rot: Math.random() * Math.PI * 2,
+    rotSpeed: (Math.random() - 0.5) * 0.04,
+    vx: (Math.random() - 0.5) * 0.5,
+    vy: Math.random() * 0.6 + 0.2,
+    alpha: Math.random() * 0.5 + 0.15,
+    type: i % 3, // 0=heart, 1=petal, 2=sparkle
+    hue: Math.random() < 0.7 ? 345 : 330,
+    drift: Math.random() * Math.PI * 2,
+    driftSpeed: Math.random() * 0.02 + 0.005,
+  }));
+
+  function drawHeart(ctx, x, y, size, alpha) {
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    ctx.fillStyle = `hsl(345, 90%, 70%)`;
+    ctx.translate(x, y);
+    ctx.beginPath();
+    ctx.moveTo(0, -size*0.3);
+    ctx.bezierCurveTo( size*0.5, -size,  size, -size*0.3,  0,  size*0.5);
+    ctx.bezierCurveTo(-size,     -size*0.3, -size*0.5, -size, 0, -size*0.3);
+    ctx.fill();
+    ctx.restore();
+  }
+
+  function drawPetal(ctx, x, y, size, rot, alpha) {
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    ctx.fillStyle = `hsla(340, 80%, 78%, 1)`;
+    ctx.translate(x, y);
+    ctx.rotate(rot);
+    ctx.beginPath();
+    ctx.ellipse(0, 0, size * 0.45, size, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  }
+
+  function drawSparkle(ctx, x, y, size, alpha) {
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    ctx.strokeStyle = `rgba(255,180,200,1)`;
+    ctx.lineWidth = 1;
+    for (let a = 0; a < 4; a++) {
+      const ang = (a / 4) * Math.PI * 2;
+      ctx.beginPath();
+      ctx.moveTo(x + Math.cos(ang) * size * 0.3, y + Math.sin(ang) * size * 0.3);
+      ctx.lineTo(x + Math.cos(ang) * size,       y + Math.sin(ang) * size);
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
+
+  function animatePetals() {
+    const W = mc.width, H = mc.height;
+    mctx.clearRect(0, 0, W, H);
+    petals.forEach(p => {
+      p.drift += p.driftSpeed;
+      p.x  += p.vx + Math.sin(p.drift) * 0.4;
+      p.y  += p.vy;
+      p.rot += p.rotSpeed;
+      if (p.y > H + 20) {
+        p.y = -20;
+        p.x = Math.random() * W;
+      }
+      if (p.type === 0) drawHeart(mctx, p.x, p.y, p.size, p.alpha);
+      else if (p.type === 1) drawPetal(mctx, p.x, p.y, p.size, p.rot, p.alpha);
+      else drawSparkle(mctx, p.x, p.y, p.size, p.alpha * 0.7);
+    });
+    requestAnimationFrame(animatePetals);
+  }
+  animatePetals();
+
+  // ── Bead animation down the spine ──
+  function animateBead() {
+    const sec   = document.getElementById("milestoneSection");
+    const bead  = document.getElementById("msBead");
+    const secH  = sec.offsetHeight;
+    const top   = 80;
+    const bot   = secH - 60;
+    let pos     = top;
+    const speed = 1.2;
+
+    bead.classList.add("visible");
+
+    function moveBead() {
+      pos += speed;
+      if (pos > bot) pos = top;
+      bead.style.top = pos + "px";
+      requestAnimationFrame(moveBead);
+    }
+    moveBead();
+  }
+
+  // ── Sequenced reveal ──
+  setTimeout(() => {
+    document.getElementById("msHeader").classList.add("animate");
+
+    setTimeout(() => {
+      const metNode = document.getElementById("msNodeMet");
+      metNode.style.transition = "opacity 0.8s cubic-bezier(0.34,1.56,0.64,1), transform 0.8s cubic-bezier(0.34,1.56,0.64,1)";
+      metNode.style.transform  = "translateX(-30px)";
+      metNode.style.opacity    = "0";
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          metNode.style.transform = "translateX(0)";
+          metNode.style.opacity   = "1";
+        });
+      });
+      metNode.classList.add("animate");
+
+      setTimeout(() => {
+        document.getElementById("msDuration").classList.add("animate");
+        animateBead();
+
+        setTimeout(() => {
+          const brokeNode = document.getElementById("msNodeBroke");
+          brokeNode.style.transition = "opacity 0.8s cubic-bezier(0.34,1.56,0.64,1), transform 0.8s cubic-bezier(0.34,1.56,0.64,1)";
+          brokeNode.style.transform  = "translateX(30px)";
+          brokeNode.style.opacity    = "0";
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              brokeNode.style.transform = "translateX(0)";
+              brokeNode.style.opacity   = "1";
+            });
+          });
+          brokeNode.classList.add("animate");
+        }, 700);
+      }, 800);
+    }, 500);
+  }, 600);
+
+})();
+
+} // end startPage()
+</script>
+
+</body>
+</html>
